@@ -1,0 +1,88 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <link href='https://fonts.googleapis.com/css?family=Nixie+One' rel='stylesheet' type='text/css'>
+
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+
+    <body>
+
+
+
+        <div class="startgame">
+            <header><h1>Card Shuffle Game</h1>
+                <p>Find the Queen of hearts</p>
+            <button class="start">Start Game</button></header>
+        </div>
+
+        <div class="table">
+        <div class="wrapper">
+            <div class="cardplaceholder flip a-one">
+                <div  class="card">
+                    <div class="face front first"><img src=""></div>
+                    <div class="face back"><img src="img/backface.png"></div>
+                </div>
+            </div>
+            <div class="cardplaceholder flip b-two">
+                <div  class="card">
+                    <div class="face front second"><img src=""></div>
+                    <div class="face back"><img src="img/backface.png"></div>
+                </div>
+            </div>
+            <div class="cardplaceholder flip c-three">
+                <div  class="card">
+                    <div class="face front third"><img src=""></div>
+                    <div class="face back"><img src="img/backface.png"></div>
+                </div>
+            </div>
+            <div class="cardplaceholder flip d-four hide">
+                <div  class="card">
+                    <div class="face front fourth"><img src=""></div>
+                    <div class="face back"><img src="img/backface.png"></div>
+                </div>
+            </div>
+            <div class="cardplaceholder flip e-five hide">
+                <div  class="card">
+                    <div class="face front fifth"><img src=""></div>
+                    <div class="face back"><img src="img/backface.png"></div>
+                </div>
+            </div>
+            </div>
+
+        <div id="countdown"><p class="seconds">05</p></div>
+        </div>
+
+        <div class="result">
+
+            <div class="winner">
+                <h1>Congratulations!</h1>
+                <h2>You found the Queen!</h2>
+                <button class="next">Next Level</button>
+            </div>
+        
+            <div class="loser">
+                <h1>You lose!</h1>
+                <button class="again">Play Again</button>
+            </div>
+        </div>
+
+
+        <script src="js/vendor/jquery-2.2.0.min.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/xtrafunctions.js"></script>
+        <script src="js/playingcards.js"></script>
+        <script src="js/playgame.js"></script>
+
+    </body>
+</html>
