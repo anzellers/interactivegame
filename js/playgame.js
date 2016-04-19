@@ -1,17 +1,14 @@
 $('.start').on('click', function() {
 
 	$('.startgame').css('margin-top','50px');
-	$('h1').css('margin', '0')
-	$('.start').css('display','none');
-	$('.table').css('display', 'block').fadeIn(1000);
+	$('.intro').addClass('hide');
+
+	$('.table').addClass('show');
+	$('.timer').addClass('show').removeClass('hide');
 	
-	$('.card').off('click');
 	playGame();
 
 });
-
-
-$('.flip').on('click', checkCard);
 
 
 $('.again').on('click', function() {
@@ -20,7 +17,9 @@ $('.again').on('click', function() {
 	$('.loser').css('display','none');
 
 	flipCards();
+	
 	playGame();
+
 
 });
 
@@ -34,7 +33,7 @@ $('.next').on('click', function() {
 	flipCards();
 
 	nextLevel();
-	countdown();
+
+	playGame();
+
 });
-
-

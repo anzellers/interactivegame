@@ -57,41 +57,73 @@ textarea {
    ========================================================================== */
 
 body {
-    background-color: #333;
+    background-color: #fff;
+    color:#333;
     background-image: url('../img/contemporary_china.png');
     font-size: 1em;
     overflow:hidden;
 }
 
-header {
-    width: 100%;
-}
-
 h1 {
-    font-family: 'Nixie One', cursive;
-    font-size: 3em;
+    font-family: 'Vidaloka', serif;
+    color: #12389B;
+    font-size: 2em;
     text-align: center;
-    padding: 0 1em;
-    margin: 1em 0;
     text-transform: uppercase;
 }
 
+.intro {
+    background-image: url('../img/qbackground.png');
+    background-repeat: no-repeat;
+    width: 800px;
+    height: 900px;
+    margin: 0 auto;
+}
+
+.title {
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: -27px;
+    top: 180px;
+}
+
+.gametype {
+    position: absolute;
+    left: 0;
+    right: -27px;
+    top: 230px;
+}
+
 h2 {
-    font-family: 'Nixie One', cursive;
+    font-family: 'Vidaloka', serif;
     font-size: 2em;
     text-align: center;
 }
 
 p {
-    font-family: 'Georgia', serif;
-    font-size: 2em;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1em;
     text-align: center;
     margin: 1em;
+}
+
+.instructions {
+    width: 400px;
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 300px;
+    margin: auto;
 }
 
 img {
     display: block;
     width: 100%;
+}
+
+.startgame {
+
 }
 
 .table {
@@ -103,7 +135,9 @@ img {
     top: 180px;
     left: 0px;
     right: 0px;
-    background-color: #f1f1f2;
+    background-color: #333;
+    outline: 2px solid #333;
+    outline-offset: 5px;
     overflow: hidden;
 }
 
@@ -120,6 +154,8 @@ img {
     position: absolute;
     left: 200px;
     top: 40px;
+    width: 100%;
+    height: 100%;
 }
 
 #countdown {
@@ -127,7 +163,6 @@ img {
     color: #fff;
     width: 100px;
     position: absolute;
-    bottom: 50px;
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -141,7 +176,7 @@ img {
     /*float: left;*/
     position: absolute;
     /*margin-right: 60px;*/
-    transition: left 500ms;
+    transition: top,left 1000ms;
 }
 
 .fourcardrow {
@@ -153,21 +188,55 @@ img {
 }
 
 .a-one {
+    top: 0;
     left: 0;
 }
-.b-two {
+.b-one {
+    top: 0;
     left: 210px;
 }
-.c-three {
+.c-one {
+    top: 0;
     left: 420px;
 }
 
-.d-four {
+.d-one {
+    top: 0;
     left: 630px;
 }
 
-.e-five {
+.e-one {
+    top: 0;
     left: 840px;
+}
+
+.f-two {
+    top: 250px;
+    left: 0;
+}
+
+.g-two {
+    top: 250px;
+    left: 210px;
+}
+
+.h-two {
+    top: 250px;
+    left: 420px;
+}
+
+.i-two {
+    top: 250px;
+    left: 630px;
+}
+
+.j-two {
+    top: 250px;
+    left: 840px;
+}
+
+.secondrow {
+    top: 250px;
 }
 
 /********Flip Card********/
@@ -218,15 +287,17 @@ img {
 .startgame {
     display: block;
     position: absolute;
+    top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
     margin: auto;
-    margin-top: 200px;
+
 }
 
 .result {
     display: none;
-    background-color: rgba(245,245,245,0.8);
+    background-color: rgba(245,245,245,0.9);
     position: fixed;
     top: 0;
     left: 0;
@@ -249,7 +320,7 @@ img {
     display: block;
     width: 200px;
     height: 50px;
-    font-family: 'Helvetica', sans-serif;
+    font-family: 'Raleway', sans-serif;
     text-transform: uppercase;
     background-color: #333;
     color: #fefefe;
@@ -259,8 +330,14 @@ img {
     margin: 0 auto;
 }
 
+.start {
+    position: relative;
+    top: 340px;
+    left: 10px;
+}
+
 .next, .again {
-    margin: 50px auto;
+    margin: 100px auto;
 }
 
 .show {
@@ -269,6 +346,11 @@ img {
 
 .hide {
     display: none;
+}
+
+.state {
+    font-size: 3em;
+    padding: 20px;
 }
 
 

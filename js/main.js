@@ -1,3 +1,4 @@
+
 ////////////////////VARIABLES////////////////////////////////////////
 
 var sortCards = [
@@ -13,9 +14,13 @@ var sortCards = [
   {let:'kS', img:'kSpade.png', alt:'king-spade'},
   {let:'jS', img:'jSpade.png', alt:'jack-spade'},
   {let:'aS', img:'aSpade.png', alt:'ace-spade'},
+  {let:'qC', img:'qClub.png', alt:'queen-club'},
+  {let:'kC', img:'kClub.png', alt:'king-club'},
+  {let:'jC', img:'jClub.png', alt:'jack-club'},
+  {let:'aC', img:'aClub.png', alt:'ace-club'},
 ];
 
-var cards = ['a-one', 'b-two', 'c-three'];
+var cards = ['a-one', 'b-one', 'c-one'];
 var counter;
 var times = 0;
 
@@ -25,13 +30,15 @@ var playingCards = [];
 	playingCards[1] = $(".cardplaceholder:nth-child(2)");
 	playingCards[2] = $(".cardplaceholder:nth-child(3)");
 
-// var i; 
-// var p;
-var x = ['a-one', 'b-two', 'c-three', 'd-four', 'e-five'];
-var y = [];
+var x = ['a-one', 'b-one', 'c-one', 'd-one', 'e-one', 'f-two', 'g-two', 'h-two', 'i-two', 'j-two'];
 var queen = "queen-heart";
-var q = 0;
 var level = 0;
+var q = 0;
+var numCards;
+
+var chooseCards = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eigth', 'ninth', 'tenth']; 
+var randNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
 
 
 var pickCard = function() {
@@ -50,21 +57,13 @@ var setCards = function () {
 
   $('.first').html('<img src="./img/'+sortCards[q].img+'" alt="'+sortCards[q].alt+'">');
 
-  var second = pickCard();
+  for (i=1; i < randNum.length; i++) {
+	randNum[i] = pickCard();
+	}
 
-  $('.second').html('<img src="./img/'+sortCards[second].img+'" alt="'+sortCards[second].alt+'">');
-
-  var third = pickCard();
-
-  $('.third').html('<img src="./img/'+sortCards[third].img+'" alt="'+sortCards[third].alt+'">');
-  
-  var fourth = pickCard();
-
-  $('.fourth').html('<img src="./img/'+sortCards[fourth].img+'" alt="'+sortCards[fourth].alt+'">');
-
-  var fifth = pickCard();
-
-  $('.fifth').html('<img src="./img/'+sortCards[fifth].img+'" alt="'+sortCards[fifth].alt+'">');
+  for (i=1; i < chooseCards.length; i++) {
+  	$('.'+chooseCards[i]).html('<img src="./img/'+sortCards[randNum[i]].img+'" alt="'+sortCards[randNum[i]].alt+'">');
+  }
 
 };
 
@@ -75,12 +74,13 @@ var flipCards = function () {
 	else {
 		$('.card').addClass('flipped');
 	};
+
+	playFlipSound();
 };
 
 var countdown = function () {
 
-	// var countdownElement = document.getElementById('countdown');
-	var seconds = 4;
+	var seconds = 5;
 	var endTime = 0;
 	var interval;
 
@@ -101,17 +101,21 @@ var countdown = function () {
 };
 
 var playGame = function () {
+
+	$('.flip').off('click');
 	setCards();
 	countdown();
+
 };
 
 var checkCard = function () {
-	
-	$('.card').on('click');
+
 	var $target = $(this);
 
 	$target.find('.card')
-		.toggleClass('flipped')		
+		.removeClass('flipped');	
+
+	playFlipSound();
 
 	var timer = setTimeout( function ()  {
 		clearInterval(timer);
@@ -132,73 +136,83 @@ var checkCard = function () {
 };
 
 var shuffleCards = function() {
-
 	
 	shuffle(cards); 
-
+	
 	$('.cardplaceholder').each(function(i) {
 		var $card = $(this);
 		$card.removeClass('a-one')
-		.removeClass('b-two')
-		.removeClass('c-three')
-		.removeClass('d-four')
-		.removeClass('e-five')
+		.removeClass('b-one')
+		.removeClass('c-one')
+		.removeClass('d-one')
+		.removeClass('e-one')
+		.removeClass('f-two')
+		.removeClass('g-two')
+		.removeClass('h-two')
+		.removeClass('i-two')
+		.removeClass('j-two')
 		.addClass(cards[i]);
 	});
 
 	times++;
-	if (times >= 10) {
+	if (times >= 15) {
 		clearInterval(counter);
+		$('.flip').on('click', checkCard);
 		times = 0;
 	}
 
-	//$('.one').removeClass('one').addClass('')
-
-   /* // For each card generate a different x position 
-    for (i = 0; i < playingCards.length; i++) {
-
-    var newx = newPosition();
-
-    playingCards[i]
-		.animate({
-			left: newx}, 
-			800, function() {
-				moveCards();
-        });  
-
-    }*/
-
-  //   var newP = newPosition();
-
-  //   var oldP = qDie.position();
-
-  //   if (oldP.left == x[1] && newP > x[1]) {
-  //   	newP = newP*(-1);
-  //   }
-  //   else if (oldP.left == x[1])
-
-  //   qDie
-		// .animate({
-		// 	left: newP}, 
-		// 	'slow', function() {
-		// 		moveCards();
-  //       });  
+	playShuffleSound();
 
 };
 
 var resetPositions = function() {
+
 	cards.sort();
 
 	for (i=0; i < playingCards.length; i++) {
 		var $target = playingCards[i];
 
 		$target.removeClass('a-one')
-			.removeClass('b-two')
-			.removeClass('c-three')
-			.removeClass('d-four')
-			.removeClass('e-five')
+			.removeClass('b-one')
+			.removeClass('c-one')
+			.removeClass('d-one')
+			.removeClass('e-one')
+			.removeClass('f-two')
+			.removeClass('g-two')
+			.removeClass('h-two')
+			.removeClass('i-two')
+			.removeClass('j-two')
 			.addClass(cards[i]);
-		}
+	}
+
+	if (numCards == 6) {
+		cards[3]='g-two';
+		playingCards[3].removeClass('d-one')
+		.addClass('g-two');
+		
+		cards[4]='h-two';
+		playingCards[4].removeClass('e-one')
+		.addClass('h-two');
+	};
+	
+	if (numCards == 7) {
+		cards[4]='d-one';
+		playingCards[4].removeClass('g-two')
+		.addClass('d-one');
+	};
+
+	if (numCards == 8) {
+		cards[6]='i-two';
+		playingCards[6].removeClass('h-two')
+		.addClass('i-two');
+	};
+
+	if (numCards == 9) {
+		cards[7]='e-one';
+		playingCards[7].removeClass('i-two')
+		.addClass('e-one');
+	}
+
 };
 
 var nextLevel = function () {
@@ -206,14 +220,16 @@ var nextLevel = function () {
 	level++;
 	numCards = level+3;
 
+	addCard();
+
 	resetPositions();
 
 	//Determine row of 3, 4 or 5
-	if ( numCards % 4 == 0) {
+	if ( numCards % 4 == 0 || numCards == 7) {
 		$('.wrapper').addClass('fourcardrow');
 	}
-	else if ( numCards % 5 == 0) {
-		$('.wrapper').addClass('fivecardrow');
+	else if ( numCards % 5 == 0 || numCards == 9) {
+		$('.wrapper').removeClass('fourcardrow').addClass('fivecardrow');
 	}
 	else {
 		$('.wrapper').removeClass('fourcardrow')
@@ -226,31 +242,37 @@ var nextLevel = function () {
 
 	playingCards.push(newCard);
 
-	$(newCard).addClass('show')
-		.addClass(cards[(cards.length-1)])
-		.removeClass('hide');
+	$(newCard).addClass(cards[(cards.length-1)])
+
+	//increase speed of card shuffle
+	var speed = 1000;
+	speed = 1000 - (level*20);
+
+	$('.cardplaceholder').css('transition-duration', speed+'ms')
 
 };
-
-
-
-
-
-// var delayCards = function () {
-// 	window.setTimeout(flipCards, 3000);
-// };
 
 var addCard = function () {
 
-	$('<div>').addClass('face').addClass('front').hasClass(cards[cards.length]);
-	$('<div>').addClass('face').addClass('back');
-	$('img').attr('src','img/backface.png').appendTo('.back');
+	var $target = $('<div>').addClass('cardplaceholder').addClass('flip');
+
+	var $btarget = $('<div>').addClass('card'); 
+
+	$target.appendTo('.wrapper');
+	$btarget.appendTo($target);
+
+	$('<div>').addClass('face').addClass('front').addClass(chooseCards[numCards-1]).appendTo($btarget);
+	$('<img>').attr('src','img/backface.png').appendTo($btarget).wrap('<div class="face back"></div>');
 
 };
 
+var playFlipSound = function () {
+	document.getElementById('flipcardsound').play();
+}
 
-
-
+var playShuffleSound = function () {
+	document.getElementById('shufflesound').play();
+}
 
 ////////////////////STEPS FOR GAME////////////////////////////////////////
 
@@ -281,37 +303,8 @@ var addCard = function () {
 //In the next level another card is added 
 	//Process repeats with 4 cards
 
-
-
-
-
-
 /////////////
 
-// var positionCards = function () {
-	
-// 	//Loop through cards and get coordinates
-// 	for (i = 0; i < playingCards.length; i++) {
 
-// 		p = playingCards[i].position(); //Get position of card
-// 		x[i] = p.left; //Store x coordinate of card
-// 		y[i] = p.top; //Store y coordinate of card
-// 	};
-
-// 	console.log(x);
-
-// };
-
-// var newPosition = function() {
-
-//  	//Generate new X position
-// 	// cards can only move along x
-// 	// position x ranges from 0 to 420
-// 	var wrapW = $('.wrapper').width() - 210;
-// 	var nx = Math.floor(Math.random() * wrapW);
-
-// 	return nx;
-
-// };
 
 
